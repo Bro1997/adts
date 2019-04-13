@@ -10,6 +10,12 @@ class List::Node //self-referential Node class
 	public:
 	   int data = 0;
 	   Node* link = nullptr;
+	   
+	   Node(int val)
+	   {
+		   data = val;
+		   link = nullptr;
+	   }
 	   //link is a data member which is a pointer 
 	   //to an object of the same type (i.e. Node)
 	
@@ -35,14 +41,15 @@ void List::insert(int val, int k)
 	
 	Node* newPtr = new Node{val};
 	
+	
 	if(k == 1)
 	{
 	  newPtr->link = frontPtr;
 	  frontPtr = newPtr;
-	 }
-	else
-	 {  
-	
+	  
+    }else{
+ 
+   
 	  Node* tmpPtr = frontPtr;
 	  int loc = 1; 
 	  
@@ -54,7 +61,7 @@ void List::insert(int val, int k)
 	
 	  newPtr->link = tmpPtr->link;
 	  tmpPtr->link = newPtr;  
-        }//end else
+	   }
 
      num_elements++;
  }
@@ -89,7 +96,25 @@ void List::remove(int k)
 	
 	delete delPtr;
 	num_elements--;
-	}
 	
+}
 	//Implementations of missing operations
 	
+int List::getNode(int k){
+	    if(k < 1 or k > num_elements)
+	    throw out_of_range("list::remove("+to_string(k)+")failed.valid indices are 1 to "+to_string(num_elements)+")"); //throw out of range exception
+	    
+	    Node*tmpPtr = frontPtr;
+	    
+	    for(int loc = 1; loc != k; loc++)
+	        tmpPtr = tmpPtr -> link;
+	        return tmpPtr->data;
+	           
+	}
+	
+	void List::clear()
+	{
+		while (num_elements > 0)
+		remove(1);
+	}
+

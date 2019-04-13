@@ -10,7 +10,8 @@
 class Stack
 {
 private:
-
+    vector<int>data;
+   
    List data;
 
 public:
@@ -23,7 +24,7 @@ public:
 
    int size();
 
-   void push(int);
+   void Stack::push(int num);
 
    void pop();
 
